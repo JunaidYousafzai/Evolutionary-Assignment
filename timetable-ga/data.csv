@@ -1,0 +1,27 @@
+course,Introduction to Programming,CS101,3
+course,Object Oriented Programming,CS102,3
+course,Data Structures and Algorithms,CS201,4
+course,Database Systems,CS202,3
+course,Operating Systems,CS301,4
+course,Computer Networks,CS302,3
+course,Discrete Mathematics,MATH201,3
+course,Linear Algebra,MATH202,3
+teacher,Dr. Ali Khan,Computer Science,
+teacher,Prof. Sara Ahmed,Software Engineering,
+teacher,Dr. Usman Tariq,Information Technology,
+teacher,Dr. Ayesha Malik,Mathematics,
+teacher,Prof. Bilal Hussain,Computer Science,
+room,Lab 1,40,
+room,Lab 2,35,
+room,Lecture Hall A,100,
+room,Lecture Hall B,80,
+timeslot,Monday,08:30,09:30
+timeslot,Monday,10:00,11:00
+timeslot,Tuesday,08:30,09:30
+timeslot,Tuesday,11:30,12:30
+timeslot,Wednesday,09:30,10:30
+timeslot,Wednesday,13:00,14:00
+timeslot,Thursday,08:30,09:30
+timeslot,Thursday,14:00,15:00
+timeslot,Friday,10:00,11:00
+timeslot,Friday,12:00,13:00

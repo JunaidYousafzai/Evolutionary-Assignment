@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TimetableGA — Premium Smart Scheduling</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- Include GSAP Core, ScrollTrigger, ScrollToPlugin -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
+</head>
+<body data-page="home">
+    <div class="grain"></div>
+    <!-- Cinematic Orbs -->
+    <div class="orb orb-a"></div>
+    <div class="orb orb-b"></div>
+    <div class="orb orb-c"></div>
+
+    <!-- PREMIUM NAV -->
+    <nav class="nav" id="mainNav">
+        <a href="/" class="nav-logo">
+            <span class="logo-icon">⚡</span> TimetableGA
+        </a>
+        <div class="nav-links">
+            <a href="/" class="nav-link active">Home</a>
+            <a href="/dashboard.html" class="nav-link">Dashboard</a>
+            <a href="/generate.html" class="nav-link">Generate</a>
+            <a href="/about.html" class="nav-link">About</a>
+            <a href="/blog.html" class="nav-link">Blog</a>
+        </div>
+    </nav>
+
+    <!-- CINEMATIC HERO -->
+    <header class="hero">
+        <div class="container">
+            <div class="hero-inner">
+                <div class="hero-eyebrow"><span class="pulse-dot"></span> Next-Gen Evolutionary Algorithm</div>
+                <h1 class="hero-h1" id="heroTitle">
+                    <span class="line"><span class="line-in">Intelligent University</span></span>
+                    <span class="line"><span class="line-in gradient-text">Scheduling System</span></span>
+                </h1>
+                <p class="hero-p" id="heroDesc">
+                    Experience the future of academic planning. Our advanced genetic algorithm evolves millions of combinations to deliver a flawless, conflict-free timetable in seconds.
+                </p>
+                <div class="hero-btns" id="heroBtns">
+                    <a href="/generate.html" class="btn-primary">Start Engine <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+                    <a href="/dashboard.html" class="btn-ghost">Admin Dashboard</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- SCROLL-REVEAL FEATURES (3D CARDS) -->
+    <section class="features-section" id="features">
+        <div class="container">
+            <div style="max-width: 600px; margin-bottom: 60px;" data-scroll>
+                <div class="sec-label">The Engine</div>
+                <h2 class="sec-h2">Engineered for Perfection.</h2>
+                <p class="sec-p">We don't just guess schedules. We biologically evolve them to absolute perfection using principles of natural selection.</p>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-card card-3d" data-color="indigo" data-scroll="up">
+                    <div class="card-3d-shine"></div>
+                    <div class="card-3d-content">
+                        <div class="feat-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+                        <h3>Hyper-Fast Evolution</h3>
+                        <p>Generates millions of generations instantly, arriving at a highly optimized global maximum timetable.</p>
+                    </div>
+                </div>
+                <div class="feature-card card-3d" data-color="violet" data-scroll="up">
+                    <div class="card-3d-shine"></div>
+                    <div class="card-3d-content">
+                        <div class="feat-icon icon-v"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
+                        <h3>Absolute Zero Clashes</h3>
+                        <p>Rigorous fitness functions ensure perfect alignment. No double-bookings, no room overlaps. Ever.</p>
+                    </div>
+                </div>
+                <div class="feature-card card-3d" data-color="cyan" data-scroll="up">
+                    <div class="card-3d-shine"></div>
+                    <div class="card-3d-content">
+                        <div class="feat-icon icon-c"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+                        <h3>Cinematic Analytics</h3>
+                        <p>Watch the algorithm learn. Real-time visual metrics and interactive fitness progression charts.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- LIVE DATA STATS -->
+    <section class="stats-section" style="padding: 100px 0;">
+        <div class="container">
+            <div class="mini-stats-row">
+                <div class="mini-stat" data-scroll="scale">
+                    <span class="mini-val" id="statCourses">0</span>
+                    <span class="mini-lbl">Courses Loaded</span>
+                </div>
+                <div class="mini-stat" data-scroll="scale">
+                    <span class="mini-val" id="statTeachers">0</span>
+                    <span class="mini-lbl">Faculty</span>
+                </div>
+                <div class="mini-stat" data-scroll="scale">
+                    <span class="mini-val" id="statRooms">0</span>
+                    <span class="mini-lbl">Lecture Rooms</span>
+                </div>
+                <div class="mini-stat" data-scroll="scale">
+                    <span class="mini-val" id="statTimeslots">0</span>
+                    <span class="mini-lbl">Time Slots</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CINEMATIC CTA -->
+    <section class="cta-section" style="padding: 140px 0; border-top: 1px solid var(--border);">
+        <div class="container" style="text-align:center">
+            <h2 class="sec-h2" data-scroll>Ready to Optimize?</h2>
+            <p class="sec-p" data-scroll style="max-width: 600px; margin: 0 auto 40px;">Step into the dashboard, import your university data, and let the genetic algorithm take over.</p>
+            <div class="hero-btns" data-scroll>
+                <a href="/dashboard.html" class="btn-primary">Launch Dashboard</a>
+                <a href="/about.html" class="btn-ghost">View Algorithm Tech</a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 TimetableGA — Premium Academic Scheduling System.</p>
+        </div>
+    </footer>
+
+    <script src="/js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,5 @@
+node_modules/
+.env
+timetable.db
+*.log
+.DS_Store

@@ -1,0 +1,18 @@
+{
+  "name": "timetable-ga",
+  "version": "1.0.0",
+  "description": "University Timetable Scheduling System using Genetic Algorithm",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": ["timetable", "genetic-algorithm", "scheduling"],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.21.0",
+    "sql.js": "^1.11.0"
+  }
+}
