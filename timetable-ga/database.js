@@ -8,7 +8,9 @@ const initSqlJs = require('sql.js');
 const fs = require('fs');
 const path = require('path');
 
-const DB_PATH = path.join(__dirname, 'timetable.db');
+// Vercel serverless functions have read-only filesystems, so we must write to /tmp
+const isVercel = process.env.VERCEL === '1';
+const DB_PATH = isVercel ? '/tmp/timetable.db' : path.join(__dirname, 'timetable.db');
 let db = null;
 
 // ============================================

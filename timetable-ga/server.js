@@ -15,6 +15,17 @@ app.use(cors());
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Initialize DB for serverless environments (like Vercel) before handling routes
+let isDbInitialized = false;
+app.use(async (req, res, next) => {
+    if (!isDbInitialized) {
+        await db.initializeDatabase();
+        db.seedSampleData();
+        isDbInitialized = true;
+    }
+    next();
+});
+
 // ============================================
 // COURSES API
 // ============================================
@@ -140,15 +151,16 @@ app.post('/api/clear-all', (req, res) => {
 });
 
 // ============================================
-// START SERVER (with async DB init)
+// START SERVER (Local Development) OR EXPORT APP (Vercel)
 // ============================================
-async function start() {
-    await db.initializeDatabase();
-    db.seedSampleData();
-
-    app.listen(PORT, () => {
-        console.log(`\n[SERVER] Timetable GA running at http://localhost:${PORT}\n`);
+if (process.env.NODE_ENV !== 'production' && !process.env.VERCEL) {
+    // Also initialize DB locally before listening
+    db.initializeDatabase().then(() => {
+        db.seedSampleData();
+        app.listen(PORT, () => {
+            console.log(`\n[SERVER] Timetable GA running at http://localhost:${PORT}\n`);
+        });
     });
 }
 
-start();
+module.exports = app;
