@@ -74,7 +74,7 @@ You should see:
 ```
 
 **Step 5: Open a browser**
-Go to: `http://localhost:3000`
+Go to: `http://localhost:3000` 
 
 **Step 6: To stop the server**
 Press `Ctrl + C` in the terminal.
