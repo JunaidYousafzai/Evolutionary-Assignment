@@ -5,7 +5,7 @@ const express = require('express');
 const cors = require('cors');
 const path = require('path');
 const db = require('./database');
-const { geneticAlgorithm, generateRandomTimetable } = require('./gaEngine');
+const { particleSwarmOptimization, generateRandomTimetable } = require('./psoEngine');
 
 const app = express();
 const PORT = 3000;
@@ -118,8 +118,8 @@ app.post('/api/generate', (req, res) => {
     // Generate a random timetable for "before" comparison
     const randomResult = generateRandomTimetable(courses, teachers, rooms, timeslots);
 
-    // Run the Genetic Algorithm
-    const gaResult = geneticAlgorithm(courses, teachers, rooms, timeslots);
+    // Run Particle Swarm Optimization
+    const gaResult = particleSwarmOptimization(courses, teachers, rooms, timeslots);
 
     // Save the full result to the database (for persistence across refresh)
     const fullResult = {

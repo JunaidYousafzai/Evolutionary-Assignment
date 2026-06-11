@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About — TimetableGA Premium</title>
+    <title>About — TimetablePSO Premium</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -17,7 +17,7 @@
     <div class="orb orb-a"></div>
 
     <nav class="nav" id="mainNav">
-        <a href="/" class="nav-logo"><span class="logo-icon">⚡</span> TimetableGA</a>
+        <a href="/" class="nav-logo"><span class="logo-icon">⚡</span> TimetablePSO</a>
         <div class="nav-links">
             <a href="/" class="nav-link">Home</a>
             <a href="/dashboard.html" class="nav-link">Dashboard</a>
@@ -29,8 +29,8 @@
 
     <section class="page-hero">
         <div class="sec-label">The Science</div>
-        <h1 class="page-title">Evolutionary Architecture</h1>
-        <p class="sec-p">Discover how we use biological principles of natural selection to solve complex mathematical constraint satisfaction problems.</p>
+        <h1 class="page-title">Swarm Intelligence Architecture</h1>
+        <p class="sec-p">Discover how we use the collective behavior of particle swarms to solve complex mathematical constraint satisfaction problems.</p>
     </section>
 
     <!-- STORYTELLING TIMELINE -->
@@ -39,36 +39,36 @@
             <div class="timeline">
                 <div class="tl-item" data-scroll="up">
                     <div class="tl-content">
-                        <h3>1. Initialization (Generation 0)</h3>
-                        <p>The algorithm generates a massive population of completely random timetables. Most of these are terrible and filled with clashes, but they serve as the primordial soup of our genetic pool.</p>
+                        <h3>1. Swarm Initialization</h3>
+                        <p>The algorithm creates a swarm of particles, each representing a completely random timetable. Each particle has a position (the timetable solution) and a velocity (the tendency to change). Most initial solutions are terrible and filled with clashes, but they form the starting exploration space for the swarm.</p>
                     </div>
                 </div>
                 
                 <div class="tl-item" data-scroll="up">
                     <div class="tl-content">
                         <h3>2. Fitness Evaluation</h3>
-                        <p>Every schedule is graded using a rigorous fitness function. It loses points for teacher double-bookings, room overlaps, and capacity violations. The closer the score is to 1.0, the better.</p>
+                        <p>Every particle's position is graded using a rigorous fitness function. It loses points for teacher double-bookings, room overlaps, and capacity violations. The closer the score is to 1.0, the better. Each particle remembers the best position it has ever found (personal best, or pBest).</p>
                     </div>
                 </div>
 
                 <div class="tl-item" data-scroll="up">
                     <div class="tl-content">
-                        <h3>3. Natural Selection & Crossover</h3>
-                        <p>The highest-scoring "parent" schedules are selected to reproduce. Their genetic material (time slots, room assignments) is crossed over to create "child" schedules that inherit the best traits of both parents.</p>
+                        <h3>3. Velocity Update</h3>
+                        <p>Each particle adjusts its velocity based on three forces: <strong>Inertia</strong> (tendency to keep moving in its current direction), <strong>Cognitive Pull</strong> (attraction toward its own personal best solution), and <strong>Social Pull</strong> (attraction toward the global best solution found by any particle in the swarm). These forces combine to guide the search.</p>
                     </div>
                 </div>
 
                 <div class="tl-item" data-scroll="up">
                     <div class="tl-content">
-                        <h3>4. Mutation</h3>
-                        <p>To prevent the algorithm from getting stuck in a local maximum, we introduce random mutations. A small percentage of schedules will randomly flip a time slot or room, ensuring genetic diversity.</p>
+                        <h3>4. Position Update</h3>
+                        <p>Based on the updated velocity, each particle moves to a new position in the solution space — effectively creating a new timetable. A small random exploration factor prevents the swarm from getting stuck in a local optimum, ensuring global coverage of the solution landscape.</p>
                     </div>
                 </div>
 
                 <div class="tl-item" data-scroll="up">
                     <div class="tl-content">
                         <h3>5. Convergence</h3>
-                        <p>This process loops hundreds of times per second. Eventually, the population converges on a globally optimal solution: a schedule with a perfect fitness score of 1.0 and zero clashes.</p>
+                        <p>This process repeats hundreds of times per second. As particles share information about the best solutions they've found, the entire swarm converges on a globally optimal solution: a schedule with a perfect fitness score of 1.0 and zero clashes.</p>
                     </div>
                 </div>
             </div>
@@ -77,7 +77,7 @@
 
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2026 TimetableGA — Premium Academic Scheduling System.</p>
+            <p>&copy; 2026 TimetablePSO — Premium Academic Scheduling System.</p>
         </div>
     </footer>
     <script src="/js/app.js"></script>

@@ -297,7 +297,7 @@ async function generateTimetable() {
         const res = await fetch(`${API}/api/generate`, { method: 'POST' });
         if (!res.ok) throw new Error((await res.json()).error || 'Engine Failure');
         displayResults(await res.json());
-        showToast('Evolution Complete! Timetable Optimized.', 'success');
+        showToast('Swarm Converged! Timetable Optimized.', 'success');
     } catch (err) { 
         showToast(err.message, 'error'); 
     } finally {
@@ -610,6 +610,51 @@ document.addEventListener('DOMContentLoaded', () => {
         const tf = document.getElementById('teacherForm'); if (tf) tf.addEventListener('submit', addTeacher);
         const rf = document.getElementById('roomForm'); if (rf) rf.addEventListener('submit', addRoom);
         const sf = document.getElementById('timeslotForm'); if (sf) sf.addEventListener('submit', addTimeslot);
+
+        // CSV File Upload Handler
+        const fileInput = document.getElementById('fileInput');
+        if (fileInput) {
+            fileInput.addEventListener('change', (e) => {
+                const file = e.target.files[0];
+                if (!file) return;
+                const reader = new FileReader();
+                reader.onload = async (ev) => {
+                    showToast('Importing dataset from file...', 'success');
+                    try {
+                        const data = parseCSV(ev.target.result);
+                        await importData(data);
+                        showToast('Dataset imported successfully!', 'success');
+                        setTimeout(() => window.location.reload(), 1500);
+                    } catch (err) { showToast('Failed to parse CSV file.', 'error'); }
+                };
+                reader.readAsText(file);
+            });
+        }
+
+        // Drag & Drop Handler
+        const dropZone = document.getElementById('dropZone');
+        if (dropZone) {
+            dropZone.addEventListener('dragover', (e) => { e.preventDefault(); dropZone.classList.add('drag-over'); });
+            dropZone.addEventListener('dragleave', () => { dropZone.classList.remove('drag-over'); });
+            dropZone.addEventListener('drop', (e) => {
+                e.preventDefault();
+                dropZone.classList.remove('drag-over');
+                const file = e.dataTransfer.files[0];
+                if (file && file.name.endsWith('.csv')) {
+                    const reader = new FileReader();
+                    reader.onload = async (ev) => {
+                        showToast('Importing dataset from file...', 'success');
+                        try {
+                            const data = parseCSV(ev.target.result);
+                            await importData(data);
+                            showToast('Dataset imported successfully!', 'success');
+                            setTimeout(() => window.location.reload(), 1500);
+                        } catch (err) { showToast('Failed to parse CSV file.', 'error'); }
+                    };
+                    reader.readAsText(file);
+                } else { showToast('Please drop a .csv file', 'error'); }
+            });
+        }
     }
 
     if (PAGE === 'generate') {

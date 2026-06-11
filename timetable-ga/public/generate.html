@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Generate — TimetableGA Premium</title>
+    <title>Generate — TimetablePSO Premium</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -19,7 +19,7 @@
     <div class="orb orb-b"></div>
 
     <nav class="nav" id="mainNav">
-        <a href="/" class="nav-logo"><span class="logo-icon">⚡</span> TimetableGA</a>
+        <a href="/" class="nav-logo"><span class="logo-icon">⚡</span> TimetablePSO</a>
         <div class="nav-links">
             <a href="/" class="nav-link">Home</a>
             <a href="/dashboard.html" class="nav-link">Dashboard</a>
@@ -32,7 +32,7 @@
     <section class="page-hero">
         <div class="sec-label">The Core Engine</div>
         <h1 class="page-title">Generate Schedule</h1>
-        <p class="sec-p">Engage the Genetic Algorithm to evolve the absolute optimal clash-free timetable.</p>
+        <p class="sec-p">Engage the Particle Swarm Optimizer to converge on the absolute optimal clash-free timetable.</p>
         <div id="dataWarningContainer" style="display:flex; justify-content:center; margin-top:20px"></div>
     </section>
 
@@ -41,11 +41,11 @@
             <button class="btn-generate" id="btnGenerate" onclick="generateTimetable()">
                 <span class="btn-text">
                     <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-                    <br><br>Initialize Evolution
+                    <br><br>Initialize Swarm
                 </span>
                 <span class="btn-loader" style="display:none; font-size:1.2rem;">
                     <span class="spinner" style="border: 3px solid rgba(255,255,255,0.3); border-top-color: #fff; border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; display: block; margin: 0 auto 16px;"></span>
-                    Evolving Generations...
+                    Swarm Optimizing...
                 </span>
             </button>
             <style>@keyframes spin { to { transform: rotate(360deg); } }</style>
@@ -80,7 +80,7 @@
                     <div class="card-3d-content">
                         <div class="rstat-icon rsi-c"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg></div>
                         <div class="result-stat-value" id="resultGenerations">0</div>
-                        <div class="result-stat-label">Generations Evolved</div>
+                        <div class="result-stat-label">Iterations Completed</div>
                     </div>
                 </div>
                 <div class="result-stat-card card-3d" data-color="emerald">
@@ -106,7 +106,7 @@
 
             <div class="comparison-grid" id="comparisonGrid" data-scroll="up">
                 <div class="comparison-card glass-card">
-                    <div class="comp-badge comp-bad">Before GA</div>
+                    <div class="comp-badge comp-bad">Before PSO</div>
                     <h3>Random Initialization</h3>
                     <div class="comparison-meta">
                         <span class="meta-badge bad">Fitness: <span id="randomFitness">0</span></span>
@@ -116,7 +116,7 @@
                     <div class="mini-schedule-list" id="randomTableBody"></div>
                 </div>
                 <div class="comparison-card glass-card">
-                    <div class="comp-badge comp-good">After GA</div>
+                    <div class="comp-badge comp-good">After PSO</div>
                     <h3>Optimized Schedule</h3>
                     <div class="comparison-meta">
                         <span class="meta-badge good">Fitness: <span id="optimizedFitness">0</span></span>
@@ -175,7 +175,7 @@
 
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2026 TimetableGA — Premium Academic Scheduling System.</p>
+            <p>&copy; 2026 TimetablePSO — Premium Academic Scheduling System.</p>
         </div>
     </footer>
     <script src="/js/app.js"></script>
