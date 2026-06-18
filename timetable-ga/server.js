@@ -5,7 +5,7 @@ const express = require('express');
 const cors = require('cors');
 const path = require('path');
 const db = require('./database');
-const { geneticAlgorithm, generateRandomTimetable } = require('./gaEngine');
+const { particleSwarmOptimization, generateRandomTimetable } = require('./psoEngine');
 
 const app = express();
 const PORT = 3000;
@@ -118,15 +118,15 @@ app.post('/api/generate', (req, res) => {
     // Generate a random timetable for "before" comparison
     const randomResult = generateRandomTimetable(courses, teachers, rooms, timeslots);
 
-    // Run the Genetic Algorithm
-    const gaResult = geneticAlgorithm(courses, teachers, rooms, timeslots);
+    // Run Particle Swarm Optimization
+    const psoResult = particleSwarmOptimization(courses, teachers, rooms, timeslots);
 
     // Save the full result to the database (for persistence across refresh)
     const fullResult = {
-        optimized: gaResult,
+        optimized: psoResult,
         random: randomResult,
     };
-    db.saveTimetable(fullResult, gaResult.fitness, gaResult.clashes);
+    db.saveTimetable(fullResult, psoResult.fitness, psoResult.clashes);
 
     res.json(fullResult);
 });
@@ -158,7 +158,7 @@ if (process.env.NODE_ENV !== 'production' && !process.env.VERCEL) {
     db.initializeDatabase().then(() => {
         db.seedSampleData();
         app.listen(PORT, () => {
-            console.log(`\n[SERVER] Timetable GA running at http://localhost:${PORT}\n`);
+            console.log(`\n[SERVER] Timetable PSO running at http://localhost:${PORT}\n`);
         });
     });
 }
