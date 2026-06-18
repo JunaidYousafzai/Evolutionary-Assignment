@@ -1,5 +1,5 @@
 // ============================================
-// TIMETABLE GA — PREMIUM FRONTEND SYSTEM
+// TIMETABLE PSO — PREMIUM FRONTEND SYSTEM
 // ============================================
 const API = '';
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
