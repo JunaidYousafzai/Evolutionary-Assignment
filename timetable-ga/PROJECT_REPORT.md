@@ -3,10 +3,10 @@
 ---
 
 **Course:** Evolutionary Computing / Artificial Intelligence  
-**Submitted By:** [Your Name]  
-**Registration No:** [Your Reg No]  
-**Submitted To:** [Teacher's Name]  
-**Date:** June 2026  
+**Submitted By:** Muhammad Junaid  
+**Roll No:** 204-BSCS-22f  
+**Submitted To:** Mam Asma Larik  
+**Date:** 20 June 2026  
 
 ---
 
@@ -477,4 +477,4 @@ This project successfully demonstrates the application of Particle Swarm Optimiz
 
 ---
 
-> **Note:** This report was prepared for academic purposes. The complete source code is available in the project repository.
+
