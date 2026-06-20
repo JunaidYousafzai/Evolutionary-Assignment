@@ -7,7 +7,7 @@
 3. [How to Use the Application](#3-how-to-use-the-application)
 4. [Project Structure Explained](#4-project-structure-explained)
 5. [How Each File Works - Line by Line](#5-how-each-file-works---line-by-line)
-6. [How the Genetic Algorithm Works](#6-how-the-genetic-algorithm-works)
+6. [How Particle Swarm Optimization Works](#6-how-particle-swarm-optimization-works)
 7. [Algorithm Performance Analysis](#7-algorithm-performance-analysis)
 8. [How the Frontend Talks to the Backend](#8-how-the-frontend-talks-to-the-backend)
 9. [Database Explained](#9-database-explained)
@@ -27,7 +27,7 @@ Creating a university timetable by hand is extremely difficult because:
 - With 6 courses, 4 teachers, 4 rooms, and 20 time slots, there are THOUSANDS of possible combinations
 
 **The Solution:**
-We use a Genetic Algorithm (GA) to automatically find the best timetable. The GA is inspired by biological evolution. It creates random schedules, scores them, keeps the good ones, combines them, and repeats until it finds a schedule with no conflicts.
+We use Particle Swarm Optimization (PSO) to automatically find the best timetable. PSO is inspired by the collective behavior of bird flocks and fish schools. It creates a swarm of timetable candidates, scores them, and lets each candidate learn from its own best solution and the swarm's global best to improve over time.
 
 **Technologies Used:**
 | Technology | What it does |
@@ -119,14 +119,14 @@ This is where you manage data. There are 4 cards:
 The app comes pre-loaded with sample data (6 courses, 4 teachers, 4 rooms, 20 time slots) so you can test immediately.
 
 ### Section 3: Generate Button
-Click "Generate Optimized Timetable" to run the Genetic Algorithm. It takes about 1 second.
+Click "Generate Optimized Timetable" to run Particle Swarm Optimization. It takes about 1 second.
 
 ### Section 4: Results (appears after generating)
 Shows 4 things:
 1. **Stats cards** - Clashes (should be 0), Fitness Score (should be 1.0), Generations used, Status
-2. **Fitness Evolution Chart** - A line graph showing how the GA improved over generations
+2. **Fitness Evolution Chart** - A line graph showing how PSO improved over iterations
 3. **Random Schedule table** - What a random (bad) timetable looks like
-4. **GA-Optimized Schedule table** - What the GA-produced (good) timetable looks like
+4. **PSO-Optimized Schedule table** - What the PSO-produced (good) timetable looks like
 
 ---
 
@@ -135,7 +135,7 @@ Shows 4 things:
 ```
 timetable-ga/
 |-- server.js          --> The main entry point. Start the app with "node server.js"
-|-- gaEngine.js        --> The Genetic Algorithm logic (the brain of the project)
+|-- psoEngine.js       --> The Particle Swarm Optimization logic (the brain of the project)
 |-- database.js        --> Handles the SQLite database (stores courses, teachers, etc.)
 |-- package.json       --> Lists project dependencies (express, sql.js, cors)
 |-- timetable.db       --> The actual database file (created automatically)
@@ -161,7 +161,7 @@ Express Server (server.js)
     | calls functions from
     |
     +---> database.js (to read/write data)
-    +---> gaEngine.js (to run the Genetic Algorithm)
+    +---> psoEngine.js (to run the Particle Swarm Optimization algorithm)
 ```
 
 ---
@@ -177,8 +177,8 @@ const express = require('express');    // Import the Express web framework
 const cors = require('cors');          // Import CORS (allows cross-origin requests)
 const path = require('path');          // Import path utility for file paths
 const db = require('./database');      // Import our database module
-const { geneticAlgorithm, generateRandomTimetable } = require('./gaEngine');
-// Import the GA function and the random timetable function
+const { particleSwarmOptimization, generateRandomTimetable } = require('./psoEngine');
+// Import the PSO function and the random timetable function
 ```
 
 **What Express does:** Express turns your computer into a web server. When someone visits `http://localhost:3000`, Express decides what to send back.
@@ -229,14 +229,14 @@ app.post('/api/generate', (req, res) => {
     // 2. Generate a random (bad) timetable for comparison
     const randomResult = generateRandomTimetable(courses, teachers, rooms, timeslots);
 
-    // 3. Run the Genetic Algorithm to find the best timetable
-    const gaResult = geneticAlgorithm(courses, teachers, rooms, timeslots);
+    // 3. Run Particle Swarm Optimization to find the best timetable
+    const psoResult = particleSwarmOptimization(courses, teachers, rooms, timeslots);
 
     // 4. Save the result to the database
-    db.saveTimetable(gaResult.timetable, gaResult.fitness, gaResult.clashes);
+    db.saveTimetable(psoResult.timetable, psoResult.fitness, psoResult.clashes);
 
     // 5. Send both results to the browser
-    res.json({ optimized: gaResult, random: randomResult });
+    res.json({ optimized: psoResult, random: randomResult });
 });
 ```
 
@@ -515,7 +515,7 @@ Uses a dark theme with these design choices:
 
 ---
 
-## 6. How the Genetic Algorithm Works
+## 6. How Particle Swarm Optimization Works
 
 ### The Biology Analogy
 
@@ -657,7 +657,7 @@ Browser (app.js)                    Server (server.js)
       |-- DELETE /api/courses/7 ---------->|  "Delete course with id 7"
       |<-- {message: "deleted"} -----------|  Server confirms
       |                                    |
-      |-- POST /api/generate ------------->|  "Run the GA"
+      |-- POST /api/generate ------------->|  "Run PSO"
       |<-- {optimized: {...},              |  Server returns both timetables
       |     random: {...}} ---------------|
 ```
@@ -722,8 +722,8 @@ The database is a single file called `timetable.db` in the project folder. It us
 
 ## 10. Common Questions Your Teacher May Ask
 
-**Q: Why did you use a Genetic Algorithm instead of brute force?**
-A: Brute force would try every possible combination. With 6 courses, 4 teachers, 4 rooms, and 20 timeslots, that is 4 * 4 * 20 = 320 combinations per course, and 320^6 = over 1 TRILLION total combinations. A GA finds a good solution in about 30-100 iterations, which takes milliseconds.
+**Q: Why did you use Particle Swarm Optimization instead of brute force?**
+A: Brute force would try every possible combination. With 6 courses, 4 teachers, 4 rooms, and 20 timeslots, that is 4 * 4 * 20 = 320 combinations per course, and 320^6 = over 1 TRILLION total combinations. PSO finds a good solution in about 30-100 iterations, which takes milliseconds.
 
 **Q: What happens if the GA cannot find a perfect solution?**
 A: It returns the best solution it found after 100 generations. The fitness score tells you how good it is. Even a fitness of 0.5 is usable - it just means there are some soft constraint violations.

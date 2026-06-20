@@ -1,18 +1,25 @@
 {
   "name": "timetable-ga",
   "version": "1.0.0",
-  "description": "University Timetable Scheduling System using Genetic Algorithm",
+  "description": "University Timetable Scheduling System using Particle Swarm Optimization",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
     "dev": "node server.js"
   },
-  "keywords": ["timetable", "genetic-algorithm", "scheduling"],
+  "keywords": [
+    "timetable",
+    "particle-swarm-optimization",
+    "scheduling"
+  ],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^4.21.0",
     "sql.js": "^1.11.0"
+  },
+  "devDependencies": {
+    "md-to-pdf": "^5.2.5"
   }
 }
